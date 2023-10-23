@@ -1,4 +1,4 @@
-package com.trafilea.test.coffeeshop.entities;
+package com.trafilea.test.coffeeshop.domain.entities;
 
 import java.io.Serializable;
 
@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,8 +24,7 @@ import lombok.Setter;
 @Table(name = "TRAFILEA_ORDER")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
 public class Order implements Serializable{
 	
@@ -38,13 +38,13 @@ public class Order implements Serializable{
 	@SequenceGenerator(sequenceName = "SEQ_ORDER_ID", allocationSize = 1, name = "CALL_SEQ_ORDER_ID")
 	private Long orderID;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CART_ID")
-	private Cart cartID;
+	@JoinColumn(name = "CART_ID", nullable = false)
+	private Cart cart;
 	@Column(name = "TOTAL_PRODUCTS", nullable = false)
 	private Double totalProducts;
-	@Column(name = "TOTAL_DISCOUNTS", nullable = false)
+	@Column(name = "TOTAL_DISCOUNTS")
 	private Double totalDiscounts;
-	@Column(name = "TOTAL_SHIPPING", nullable = false)
+	@Column(name = "TOTAL_SHIPPING")
 	private Double totalShipping;
 	@Column(name = "TOTAL_ORDER", nullable = false)
 	private Double totalOrder;

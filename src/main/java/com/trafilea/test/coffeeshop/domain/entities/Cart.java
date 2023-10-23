@@ -1,4 +1,4 @@
-package com.trafilea.test.coffeeshop.entities;
+package com.trafilea.test.coffeeshop.domain.entities;
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,8 +24,7 @@ import lombok.Setter;
 @Table(name = "TRAFILEA_CART")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
 public class Cart implements Serializable{
 	
@@ -37,8 +37,8 @@ public class Cart implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CALL_SEQ_CART_ID")
 	@SequenceGenerator(sequenceName = "SEQ_CART_ID", allocationSize = 1, name = "CALL_SEQ_CART_ID")
 	private Long cartId;
-	@Column(name = "USER_ID", nullable = false, length = 30)
-	private String userID;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "products")
-	private List<Product> products;
+	@Column(name = "USER_ID", nullable = false)
+	private Long userID;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
+	private List<Item> items;
 }
