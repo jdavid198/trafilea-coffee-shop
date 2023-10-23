@@ -3,8 +3,12 @@ package com.trafilea.test.coffeeshop.domain.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import com.trafilea.test.coffeeshop.domain.enums.StatusEnum;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,6 +43,9 @@ public class Cart implements Serializable{
 	private Long cartId;
 	@Column(name = "USER_ID", nullable = false)
 	private Long userID;
+	@Column(name = "STATUS", nullable = false)
+	@Enumerated(EnumType.STRING)
+	private StatusEnum status;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cart")
 	private List<Item> items;
 }

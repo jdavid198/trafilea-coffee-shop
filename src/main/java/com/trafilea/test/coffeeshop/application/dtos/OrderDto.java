@@ -20,5 +20,5 @@ public class OrderDto implements Serializable{
 	@Setter(AccessLevel.NONE)
 	private static final long serialVersionUID = -7911624125235164887L;
 	
-	private Long cartID;
+	private Long cartId;
 }

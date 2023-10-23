@@ -17,13 +17,17 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService{
 	
+	private static final String MSG_MUST_SEND_PRODUCT = "You must send the product.";
 	@Autowired
 	private ProductRepository productRepository;
 
 	@Override
-	public Product findById(Long productId) {
+	public Product findById(Long productId) throws Exception {
+		if (productId==null) {
+			throw new Exception(MSG_MUST_SEND_PRODUCT);
+		}
 		Optional<Product>optional=productRepository.findById(productId);
-		if (optional.isEmpty()) {
+		if (optional==null || optional.isEmpty()) {
 			return null;
 		}
 		return optional.get();

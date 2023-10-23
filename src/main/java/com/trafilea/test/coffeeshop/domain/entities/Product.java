@@ -1,6 +1,6 @@
 package com.trafilea.test.coffeeshop.domain.entities;
 
-import com.trafilea.test.coffeeshop.enums.CategoryEnum;
+import com.trafilea.test.coffeeshop.domain.enums.CategoryEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

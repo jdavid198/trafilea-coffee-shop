@@ -43,9 +43,15 @@ public class Item implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PRODUCT_ID")
 	private Product product;
+	@Column(name = "PRICE", nullable = false, precision = 2)
+	private Double price;
 	@Column(name = "QUANTITY", nullable = false)
 	private Integer quantity;
 	@Column(name = "DISCOUNTS", nullable = false)
 	private Double discounts;
+
+	public Double getTotalPrice() {
+		return price*quantity;
+	}
 	
 }

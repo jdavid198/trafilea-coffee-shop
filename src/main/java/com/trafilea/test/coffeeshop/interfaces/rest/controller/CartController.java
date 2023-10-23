@@ -25,6 +25,9 @@ import com.trafilea.test.coffeeshop.interfaces.dto.ResponseMessageDto;
 @CrossOrigin(origins = "*")
 public class CartController {
 	
+	private static final String MSG_QUANTITY_UPDATED_SUCCESSFULLY = "The quantity is updated successfully";
+	private static final String MSG_PRODUCTS_ADDED_TO_CART = "The products are added to the cart";
+	private static final String MSG_CART_CREATED_SUCCESSFULLY_CART_ID = "The cart is created successfully, the cart id is:";
 	@Autowired
 	private CartService cartService;
 	@Autowired
@@ -37,7 +40,7 @@ public class CartController {
 			Long cartId=cartService.create(cartDto);
 			responseMessageDto=ResponseMessageDto.builder()
 													.error(false)
-													.message("The cart is created successfully, the cart id is:"+cartId)
+													.message(MSG_CART_CREATED_SUCCESSFULLY_CART_ID+cartId)
 													.object(cartId).build();
 			return ResponseEntity.status(HttpStatus.CREATED).body(responseMessageDto);
 		} catch (Exception e) {
@@ -56,7 +59,7 @@ public class CartController {
 			itemService.addItemsToCart(cartId, itemDtos);
 			responseMessageDto=ResponseMessageDto.builder()
 					.error(false)
-					.message("The products are added to the cart")
+					.message(MSG_PRODUCTS_ADDED_TO_CART)
 					.object(cartId).build();
 			return ResponseEntity.status(HttpStatus.CREATED).body(responseMessageDto);
 		} catch (Exception e) {
@@ -75,9 +78,9 @@ public class CartController {
 			itemService.updateQuantityByCartProduct(cartId, productId, quantityDto.getQuantity());
 			responseMessageDto=ResponseMessageDto.builder()
 					.error(false)
-					.message("The quantity is updated successfully")
+					.message(MSG_QUANTITY_UPDATED_SUCCESSFULLY)
 					.object(cartId).build();
-			return ResponseEntity.status(HttpStatus.CREATED).body(cartId);
+			return ResponseEntity.status(HttpStatus.CREATED).body(responseMessageDto);
 		} catch (Exception e) {
 			responseMessageDto=ResponseMessageDto.builder()
 					.error(true)

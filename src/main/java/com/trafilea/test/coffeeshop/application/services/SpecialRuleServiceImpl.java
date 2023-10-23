@@ -1,15 +1,13 @@
 package com.trafilea.test.coffeeshop.application.services;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.trafilea.test.coffeeshop.domain.entities.Item;
-import com.trafilea.test.coffeeshop.domain.entities.Product;
+import com.trafilea.test.coffeeshop.domain.enums.CategoryEnum;
 import com.trafilea.test.coffeeshop.domain.services.SpecialRuleService;
-import com.trafilea.test.coffeeshop.enums.CategoryEnum;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,12 +34,11 @@ public class SpecialRuleServiceImpl implements SpecialRuleService{
 
 	@Override
 	public boolean ruleCategoryAccessories(List<Item> items) {
-		Double quantity=items.stream()
+		Double value=items.stream()
 				.filter(item->item.getProduct().getCategory().equals(CategoryEnum.ACCESSORIES))
-				.flatMap(item -> Stream.of(item.getProduct()))
-                .mapToDouble(Product::getPrice)
+                .mapToDouble(Item::getTotalPrice)
                 .sum();
-		return quantity>70;
+		return value>70;
 	}
 	
 }

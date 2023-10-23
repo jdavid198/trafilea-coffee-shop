@@ -1,4 +1,4 @@
-package com.trafilea.test.coffeeshop.enums;
+package com.trafilea.test.coffeeshop.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

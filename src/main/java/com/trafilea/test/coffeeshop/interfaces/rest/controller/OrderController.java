@@ -20,6 +20,7 @@ import com.trafilea.test.coffeeshop.interfaces.dto.ResponseMessageDto;
 @CrossOrigin(origins = "*")
 public class OrderController {
 	
+	private static final String MSG_ORDER_CREATED_SUCCESSFULLY_ORDER_ID = "The order is created successfully, the order id is:";
 	@Autowired
 	private OrderService orderService;
 	
@@ -30,7 +31,7 @@ public class OrderController {
 			OrderTotalsDto orderTotalsDto=orderService.create(orderDto);
 			responseMessageDto=ResponseMessageDto.builder()
 					.error(false)
-					.message("The order is created successfully, the order id is:"+orderTotalsDto.getOrderID())
+					.message(MSG_ORDER_CREATED_SUCCESSFULLY_ORDER_ID+orderTotalsDto.getOrderID())
 					.object(orderTotalsDto).build();
 			return ResponseEntity.status(HttpStatus.CREATED).body(responseMessageDto);
 		} catch (Exception e) {
