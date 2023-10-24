@@ -1,6 +1,6 @@
 # Trafilea-coffee-shop-api
-Trafilea tech challenge
-TECHNOLOGY
+Trafilea tech challenge  
+# Technology
   - Language: Java 17 - springboot
   - Database: H2
 
