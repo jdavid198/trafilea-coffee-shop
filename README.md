@@ -17,5 +17,5 @@ TECHNOLOGY
   - Docker run -p 9091:9091 -d coffee-shop
 
 
-Note: If you want to check the database info you can access to http://localhost:9091/h2-console
+Note: If you want to check the database info you can access to http://localhost:9091/h2-console  
 Note: In src/main/resources I add a postman file to test
