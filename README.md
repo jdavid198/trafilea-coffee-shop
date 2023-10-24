@@ -1,8 +1,8 @@
 # Trafilea-coffee-shop-api
 Trafilea tech challenge
-tecnologi
-Language: Java 17 - springboot
-Database: H2
+TECHNOLOGY
+  - Language: Java 17 - springboot
+  - Database: H2
 
 # Assumtions
   - A user can only have one active cart.
