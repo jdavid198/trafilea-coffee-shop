@@ -68,8 +68,11 @@ public class ItemServiceImpl implements ItemService,Messages {
 			}
 			
 			Optional<Item> itemOptional=itemRepository.findByCartAndProduct(cartOptional.get(), productOptional.get());
+			Optional<Item> itemFilter=items.stream().filter(itemf->itemf.getProduct().getProductId().equals(itemDto.getProduct())).findFirst();
 			Item item;
-			if (itemOptional.isPresent()) {
+			if(itemFilter.isPresent()) {
+				item=itemFilter.get();
+			}else if (itemOptional.isPresent()) {
 				item=itemOptional.get();
 			}else {
 				item=Item.builder()
@@ -85,8 +88,9 @@ public class ItemServiceImpl implements ItemService,Messages {
 		}
 		
 		itemRepository.saveAll(items);
+		List<Item> allItems= itemRepository.findByCart(cartOptional.get());
 		CartDto cartDto=cartMapper.cartToCartDto(cartOptional.get());
-		cartDto.setItemDtos(itemMapper.listItemToListItemDto(items));
+		cartDto.setItemDtos(itemMapper.listItemToListItemDto(allItems));
 		return cartDto;
 	}
 	
@@ -112,6 +116,9 @@ public class ItemServiceImpl implements ItemService,Messages {
 		
 		Optional<Item> itemOptional= itemRepository.findById(itemId);
 		if (!itemOptional.isPresent()) {
+			throw new ApiException(HttpStatus.BAD_REQUEST, MSG_MUST_SEND_A_VALID_ITEM);
+		}
+		if (!itemOptional.get().getCart().getCartId().equals(cartId)) {
 			throw new ApiException(HttpStatus.BAD_REQUEST, MSG_MUST_SEND_A_VALID_ITEM);
 		}
 		if (quantity==0) {

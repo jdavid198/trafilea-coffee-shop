@@ -106,7 +106,6 @@ public class ItemServiceImplTest {
 			ApiException apiException = assertThrows(ApiException.class, () -> {
 				itemServiceImpl.addItemsToCart(cartId,itemDtos);
 			});
-			System.out.println(apiException.getException());
 			// Assert
 			assertTrue(apiException.getException().contains("The quantity is null for the product with id"));
 		}
@@ -221,6 +220,21 @@ public class ItemServiceImplTest {
 			Long itemId=1L;
 			when(cartRepository.findById(any())).thenReturn(Optional.of(CartBuilder.getCart()));
 			when(itemRepository.findById(any())).thenReturn(Optional.empty());
+			// Act
+			ApiException apiException = assertThrows(ApiException.class, () -> {
+				itemServiceImpl.updateQuantityByCartItem(cartId,itemId,quantity);
+			});
+			// Assert
+			assertEquals("You must send a valid item.", apiException.getException());
+		}
+		@Test
+		public void itemNotCart() throws Exception {
+			// Arrange
+			Integer quantity=1;
+			Long cartId=33L;
+			Long itemId=1L;
+			when(cartRepository.findById(any())).thenReturn(Optional.of(CartBuilder.getCart()));
+			when(itemRepository.findById(any())).thenReturn(Optional.of(ItemBuilder.getItem()));
 			// Act
 			ApiException apiException = assertThrows(ApiException.class, () -> {
 				itemServiceImpl.updateQuantityByCartItem(cartId,itemId,quantity);
