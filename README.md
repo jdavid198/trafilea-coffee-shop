@@ -5,12 +5,12 @@ Language: Java 17 - springboot
 Database: H2
 
 # Assumtions
-  -A user can only have one active cart.
-  -If the order is generated the cart is closed.
-  -The discount is general for spend more than 70 dollars on category Accessories.
-  -Always send the userID.
-  -The shipping is 10 Dolars.
-  -Items can be created when the cart is created
+  - A user can only have one active cart.
+  - If the order is generated the cart is closed.
+  - The discount is general for spend more than 70 dollars on category Accessories.
+  - Always send the userID.
+  - The shipping is 10 Dolars.
+  - Items can be created when the cart is created
 
 # How to run
   - Docker build -t coffee-shop .
