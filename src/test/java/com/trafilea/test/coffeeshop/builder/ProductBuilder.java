@@ -1,8 +1,8 @@
 package com.trafilea.test.coffeeshop.builder;
 
-import com.trafilea.test.coffeeshop.application.dtos.ProductDto;
-import com.trafilea.test.coffeeshop.domain.entities.Product;
-import com.trafilea.test.coffeeshop.domain.enums.CategoryEnum;
+import com.trafilea.test.coffeeshop.controller.dtos.ProductDto;
+import com.trafilea.test.coffeeshop.entities.Product;
+import com.trafilea.test.coffeeshop.enums.CategoryEnum;
 
 public class ProductBuilder {
 	public static Product getProduct(){

@@ -3,9 +3,10 @@ package com.trafilea.test.coffeeshop.builder;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.trafilea.test.coffeeshop.application.dtos.ItemDto;
-import com.trafilea.test.coffeeshop.domain.entities.Item;
-import com.trafilea.test.coffeeshop.domain.enums.CategoryEnum;
+import com.trafilea.test.coffeeshop.controller.dtos.ItemRequestDto;
+import com.trafilea.test.coffeeshop.dtos.ItemDto;
+import com.trafilea.test.coffeeshop.entities.Item;
+import com.trafilea.test.coffeeshop.enums.CategoryEnum;
 
 public class ItemBuilder {
 	public static Item getItem(){
@@ -52,11 +53,13 @@ public class ItemBuilder {
 		items.add(item);
 		return items;
 	}
+	
 	public static ItemDto getItemDto(){
 		return ItemDto.builder()
-				.product(1L)
-				.discounts(0D)
+				.cartId(1L)
+				.productId(1L)
 				.quantity(1)
+				.discounts(0D)
 				.build();
 	}
 	public static List<ItemDto> getItemDtos(){
@@ -64,6 +67,21 @@ public class ItemBuilder {
 		itemDtos.add(getItemDto());
 		itemDtos.add(getItemDto());
 		itemDtos.add(getItemDto());
+		return itemDtos;
+	}
+	
+	public static ItemRequestDto getItemRequestDto(){
+		return ItemRequestDto.builder()
+				.product(1L)
+				.discounts(0D)
+				.quantity(1)
+				.build();
+	}
+	public static List<ItemRequestDto> getItemRequestDtos(){
+		List<ItemRequestDto> itemDtos=new ArrayList<ItemRequestDto>();
+		itemDtos.add(getItemRequestDto());
+		itemDtos.add(getItemRequestDto());
+		itemDtos.add(getItemRequestDto());
 		return itemDtos;
 	}
 }
